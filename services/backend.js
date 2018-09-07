@@ -14,6 +14,8 @@
  *    limitations under the License.
  */
 
+require('dotenv').config();
+
 const fs = require('fs');
 const Hapi = require('hapi');
 const path = require('path');
@@ -255,6 +257,20 @@ function userIsInCooldown(opaqueUserId) {
     method: 'GET',
     path: '/color/query',
     handler: colorQueryHandler,
+  });
+
+  server.route({
+    method: "GET",
+    path: "/config/settings",
+    handler: (req) => {
+      // Verify all requests.
+      const payload = verifyAndDecode(req.headers.authorization);
+      return JSON.stringify({
+        username: process.env.TWITCHUSER,
+        oauth: process.env.OAUTH,
+        yandex: process.env.YANDEX_KEY
+      });
+    }
   });
 
   // Start the server.

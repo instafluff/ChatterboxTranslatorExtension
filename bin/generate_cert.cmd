@@ -2,7 +2,7 @@
 SETLOCAL
 
 SET T=%TEMP%\%RANDOM%.cnf
-SET GIT=%ProgramFiles%\Git
+SET GIT=D:\Program Files\Git
 SET CONF=%~dp0..\conf
 SET FILE_ROOT=%CONF%\%~1
 
